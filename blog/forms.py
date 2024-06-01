@@ -1,5 +1,5 @@
 from django import forms
-from .models import User
+from .models import User, Student, Team
 
 
 class LoginForm(forms.Form):
@@ -41,13 +41,26 @@ class ProfileEditForm(forms.ModelForm):
   
   
 class StudentForm(forms.ModelForm):
-    name = forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "Name"}))
-    last_name = forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "Last name"}))
-    age = forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "age", "type":"number"}))
-    email= forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "Enter email", "type":"email"}))
+    user_id = forms.CharField(widget=forms.NumberInput({"class": "form-control", "placeholder": "id"}))
+    date_of_birth= forms.DateField(widget=forms.DateInput({"class": "form-control", "placeholder": "Birth date"}))
+    end_date = forms.DateField(widget=forms.DateInput({"class": "form-control", "placeholder": "date",}))
+    team= forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "Enter Team name", }))
 
    
     class Meta:
-        model = User
-        fields = ('name', 'last_name', 'age', 'email')
+        model = Student
+        fields = ('user_id', 'date_of_birth', 'end_date', 'team')
+        
+        
+        
+  
+class TeamForm(forms.ModelForm):
+    name = forms.CharField(widget=forms.TextInput({"class": "form-control", "placeholder": "name"}))
+    end_date = forms.DateField(widget=forms.DateInput({"class": "form-control", "placeholder": "date",}))
+   
+   
+    class Meta:
+        model = Team
+        fields = ('name', 'end_date')
+            
     

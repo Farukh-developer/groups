@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render, redirect,get_object_or_404
 from django.views import View
-from .forms import LoginForm, RegisterForm, ProfileEditForm, StudentForm
+from .forms import LoginForm, RegisterForm, ProfileEditForm, StudentForm, TeamForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User, Student, Team
 from .permission import AdminRequiredMixin
@@ -19,7 +19,7 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('users:register')
+                return redirect('users:profile')
 
         form = LoginForm()
         return render(request, 'user/login.html', {'form': form})
@@ -71,6 +71,10 @@ class GroupsView(View):
         team =Team.objects.all()
         return render(request, 'user/group.html', context={"team": team})
 
+def student(request, id):
+    student=Student.objects.get(id=id)
+    return render(request, 'user/read.html', context={"student":student})
+
 
 def delete(request, id):
     data = get_object_or_404(User, id=id)
@@ -87,13 +91,13 @@ class LogoutView(View):
     
     
 def read(request, id):
-    student=Student.objects.get(id=id)
-    return render(request, 'user/read.html', context={"student":student})
+    team=Team.objects.get(id=id)
+    return render(request, 'user/read.html', context={"team":team})
 
 def create(request):
-    form=StudentForm()
+    form=TeamForm()
     if request.method=='POST':
-        form=StudentForm(request.POST, request.FILES)
+        form=TeamForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             return redirect('users:profile')
@@ -101,19 +105,19 @@ def create(request):
 
 
 def update(request, id):
-    student=get_object_or_404(Student, id=id)
-    form=StudentForm(instance=student)
+    team=get_object_or_404(Team, id=id)
+    form=TeamForm(instance=team)
     if request.method=='POST':
-        form=StudentForm(request.POST,request.FILES, instance=student)
+        form=TeamForm(request.POST,request.FILES, instance=team)
         if form.is_valid():
             form.save()
-            return redirect('users:profile')
+            return redirect('users:group')
     return render(request, 'user/create.html', context={"form":form})  
 
 
 def delete(request, id):
-    student=get_object_or_404(Student, id=id)
-    student.delete()
-    return redirect('users:profile')  
+    team=get_object_or_404(Team, id=id)
+    team.delete()
+    return redirect('users:group')  
     
     
