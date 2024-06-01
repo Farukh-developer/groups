@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table align-middle mb-0 bg-white">
+  <thead class="bg-light">
+    <tr>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Started_dtae</th>
+      <th>End_date</th>
+      <th>Changes</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for team in team %}
+    <tr>
+      <td>
+        <div class="d-flex align-items-center">
+          <img
+              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
+              alt=""
+              style="width: 45px; height: 45px"
+              class="rounded-circle"
+              />
+          <div class="ms-3">
+            <p class="fw-bold mb-1">John Doe</p>
+            <p class="text-muted mb-0">john.doe@gmail.com</p>
+          </div>
+        </div>
+      </td>
+      <td>
+   
+        <p class="text-muted mb-0">{{team.name}}</p>
+      </td>
+      <td>{{team.date_created}}</td>
+      <td>
+        {{team.end_date}}
+      </td>
+      <td>
+        <a class="btn btn-info" href=""> Read <i class="fa-solid fa-book"></i></a>
+        <a class="btn btn-warning" href=""> Update<i class="fa-regular fa-pen-to-square"></i></a>&nbsp;
+        <a class="btn btn-danger" href="">Remove <i class="fa-solid fa-trash"></i></a>
+      </td>
+      <td>
+        
+        <span class="badge badge-success rounded-pill d-inline">Active</span>
+      </td>
+      
+      
+      
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

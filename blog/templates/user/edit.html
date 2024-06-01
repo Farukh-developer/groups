@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<style>
+body {
+    background: linear-gradient(45deg, #f3ec78, #af4261);
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+}
+
+.card {
+    border: none;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    color: #fff;
+}
+
+.card-header {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px 0 rgba(31, 38, 135, 0.2);
+}
+
+.btn-custom {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px 0 rgba(31, 38, 135, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-custom:hover {
+    background: linear-gradient(45deg, #2575fc, #6a11cb);
+    box-shadow: 0 6px 20px 0 rgba(31, 38, 135, 0.3);
+    transform: translateY(-3px);
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+input, textarea, select {
+    border-radius: 10px !important;
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: #fff !important;
+    border: none;
+    padding: 10px;
+}
+
+input::placeholder, textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+</style>
+
+<div class="container">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h1>Edit Page</h1>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group">
+                    {{ form }}
+                </div>
+                <button type="submit" class="btn btn-custom btn-block">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
