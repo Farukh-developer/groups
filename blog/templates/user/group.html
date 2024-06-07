@@ -1,35 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<a class="btn btn-outline-info" href="{% url 'users:create' %}">Create<i class="fa-solid fa-plus"></i>
+<a class="btn btn-outline-info" href="">Create<i class="fa-solid fa-plus"></i>
 </a>
 <table class="table align-middle mb-0 bg-white">
   <thead class="bg-light">
     <tr>
-      <th>Name</th>
+
       <th>Title</th>
-      <th>Started_dtae</th>
+      <th>Started_date</th>
       <th>End_date</th>
-      <th>Changes</th>
+      <th>Students</th>
+
     </tr>
   </thead>
   <tbody>
   {% for team in team %}
     <tr>
-      <td>
-        <div class="d-flex align-items-center">
-          <img
-              src="https://mdbootstrap.com/img/new/avatars/8.jpg"
-              alt=""
-              style="width: 45px; height: 45px"
-              class="rounded-circle"
-              />
-          <div class="ms-3">
-            <p class="fw-bold mb-1">Unknown</p>
-
-          </div>
-        </div>
-      </td>
+  
       <td>
    
         <p class="text-muted mb-0">{{team.name}}</p>
@@ -37,6 +25,9 @@
       <td>{{team.date_created}}</td>
       <td>
         {{team.end_date}}
+      </td>
+      <td>
+        <a class="btn btn-link btn-sm, btn-rounded" href="{% url 'users:team-students' team.id %}">Show students</a>
       </td>
       <td>
         <a class="btn btn-info" href="{% url 'users:read' team.id %}"> Read <i class="fa-solid fa-book"></i></a>

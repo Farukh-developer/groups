@@ -1,0 +1,23 @@
+{% extends 'students/dashboard.html' %}
+
+{% block content %}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Status</th>
+       
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active">
+        <th scope="row">{{student.team.id}}</th>
+        <td>{{student.team.name}}</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+
+    </tbody>
+  </table>
+{% endblock %}

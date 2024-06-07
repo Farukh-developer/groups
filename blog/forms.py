@@ -63,4 +63,15 @@ class TeamForm(forms.ModelForm):
         model = Team
         fields = ('name', 'end_date')
             
+
+
+
+class StudentEditForm(forms. ModelForm):
+    date_of_birth = forms.DateField(widget=forms.DateInput({"class": "form-control"}))
+
+
+
     
+    class Meta:
+        model = Student
+        fields = ('date_of_birth', 'team')
