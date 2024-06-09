@@ -75,3 +75,21 @@ class StudentEditForm(forms. ModelForm):
     class Meta:
         model = Student
         fields = ('date_of_birth', 'team')
+        
+        
+        
+        
+class ResetPasswordForm(forms.Form):
+    old_password = forms.CharField(widget=forms.PasswordInput({"class": "form-control", "placeholder": "Old Password"}))
+    new_password = forms.CharField(widget=forms.PasswordInput({"class": "form-control", "placeholder": "New Password"}))
+    confirm_password = forms.CharField(widget=forms.PasswordInput({"class": "form-control", "placeholder": "Confirm Password"}))
+
+
+    def clean_confirm_password(self):
+        new_password = self.cleaned_data['new_password']
+        confirm_password = self.cleaned_data['confirm_password']
+
+        if new_password != confirm_password:
+            raise forms.ValidationError("Password don't match")
+        
+        return confirm_password

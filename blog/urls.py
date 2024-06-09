@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import (LoginView, RegisterView, ProfileView, EditProfileView,  GroupsView, LogoutView, StudentsListView,
-                    EditStudentView, DeleteStudentView, StudentByTeamView , delete, update, create, read)
+                    EditStudentView, DeleteStudentView, StudentByTeamView , ResetPasswordView, delete, update, create, read)
 
 app_name = 'users'
 
@@ -30,6 +30,8 @@ urlpatterns = [
     path('update/<int:id>/', update, name='update'),
     path('delete/<int:id>/', delete, name='delete'),
     path('read/<int:id>/', read, name='read'),
+    path('reset/', ResetPasswordView.as_view(), name='reset'),
+    
    
     
     

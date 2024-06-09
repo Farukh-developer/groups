@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login,logout
 from django.shortcuts import render, redirect,get_object_or_404
 from django.views import View
-from .forms import LoginForm, RegisterForm, ProfileEditForm, StudentForm, TeamForm, StudentEditForm
+from .forms import LoginForm, RegisterForm, ProfileEditForm, StudentForm, TeamForm, StudentEditForm, ResetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import User, Student, Team
 from .permission import AdminRequiredMixin
@@ -156,6 +156,20 @@ class DeleteStudentView(AdminRequiredMixin, View):
 
     
     
-    
+class ResetPasswordView(LoginRequiredMixin,View):
+    def get(self, request):
+        form = ResetPasswordForm
+        return render(request, 'user/reset_password.html', {'form':form})
+
+    def post(self, request):
+        form = ResetPasswordForm(request.POST)
+        if form.is_valid():
+            new_password = form.cleaned_data['new_password']
+            user = request.user
+            user.set_password(new_password)
+            user.save()
+            return redirect('/')
+        form = ResetPasswordForm
+        return render(request, 'user/reset_password.html', {'form':form})
 
     

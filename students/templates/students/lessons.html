@@ -1,0 +1,28 @@
+{% extends 'students/dashboard.html' %}
+
+{% block content %}
+<table class="table table-warning">
+    <thead>
+      <tr>
+     
+        <th scope="col">Theme</th>
+        <th scope="col">Date</th>
+        <th scope="col">Assigments Status</th>
+       
+        
+       
+      </tr>
+    </thead>
+    <tbody>
+        {% for lessons in lessons %}
+      <tr class="table-warning">
+        <th scope="row">{{lessons.theme}}</th>
+        <td>{{lessons.date}}</td>
+ 
+        <td>{% if lessons.assigments_status %} <button class="btn btn-outline-success">Done</button> {% else %} <a href="{% url 'students:homework' lessons.id %}" class="btn btn-outline-danger">Undo</a> {% endif %} </td>
+        
+      </tr>
+       {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

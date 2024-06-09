@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+}
+
+header .logo {
+    font-size: 1.5em;
+}
+
+header .main-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header .main-nav ul li {
+    margin: 0 15px;
+}
+
+header .main-nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+header .user-profile {
+    display: flex;
+    align-items: center;
+}
+
+header .user-profile img {
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+header .user-profile .dropdown {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 20px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+header .user-profile:hover .dropdown {
+    display: block;
+}
+
+.sidebar {
+    background-color: #f4f4f4;
+    width: 200px;
+    padding: 20px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+}
+
+.sidebar .search-bar input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+main {
+    margin-left: 220px;
+    padding: 20px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+main section {
+    margin-bottom: 40px;
+}
+
+main .overview {
+    background-color: #e3f2fd;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+main .quick-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+main .quick-stats .stat {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+}
+footer ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+footer ul li {
+    margin: 0 10px;
+}
+
+footer ul li a {
+    color: white;
+    text-decoration: none;
+}
