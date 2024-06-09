@@ -26,11 +26,11 @@
         />
 </head>
 <body>
-  <div class="container py-5">
-    <div class="row">
+  <div class="container py-5" >
+    <div class="row" >
         <div class="col">
-            <nav aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
-                <ol class="breadcrumb mb-0">
+            <nav  aria-label="breadcrumb" class="bg-body-tertiary rounded-3 p-3 mb-4">
+                <ol class="breadcrumb mb-0" > 
                         {% if user.is_authenticated %}
                         <li class="breadcrumb-item"><a href="{% url 'users:logout' %}"><i class="fas fa-right-from-bracket"></i></a></li>
                         <li class="breadcrumb-item"><a href="{% url 'users:profile' %}"><i class="fas fa-id-badge"></i></a></li>
