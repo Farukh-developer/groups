@@ -1,17 +1,86 @@
-{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            color: #333333;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-{% block content %}
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+        }
 
-<div class="container">
-    <h1>homework page</h1>
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #ff5f6d;
+        }
 
-<form  method="post" enctype="multipart/form-data" >
-    {% csrf_token %}
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    {{form}}
+        form > * {
+            width: 100%;
+            max-width: 500px;
+        }
 
-    <button type="submit" class="btn btn-outline-info">save</button>
-</form>
-</div>
+        .btn {
+            background-color: #ff5f6d;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 20px;
+        }
 
-{% endblock content %}
+        .btn:hover {
+            background-color: #e8505b;
+            transform: scale(1.05);
+        }
+
+        .form-control {
+            border-radius: 30px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Homework Page</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn">Save</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
