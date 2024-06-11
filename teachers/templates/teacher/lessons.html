@@ -1,51 +1,47 @@
-{% extends 'base.html' %}
 
-{% block content %}
 {% extends 'students/dashboard.html' %}
 
+
+
 {% block content %}
-
 <div>
-  <table class="table table-warning">
-    <thead>
-      <tr>
-        <th scope="col">Group_name</th>
-        <th scope="col">Created_date</th>
-        <th scope="col">Teacher_name</th>
-       
-      </tr>
-    </thead>
-    <tbody>
-        {% for students in students %}
-      <tr class="table-warning">
-        <th scope="row"><a href="">{{students.team.theme}}</a></th>
-        <td><a href="#">{{team.date_created}}</a></td>
-        <td>{{team.teacher}}</td>
- 
-      </tr>
-        {% endfor %}
-    </tbody>
-  </table>
-</div>
-{% endblock %}
-{% endblock %}
-
-
-<div class="container">
   <thead>
-      <tr style="padding: 2px;">
-  
-          &nbsp;&nbsp;<a href="#">
-              <th scope="col"><b>Attendance</b></th>
-          </a>&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="">
-              <th scope="col"><b>Videosr</b></th>
-          </a>&nbsp;&nbsp;&nbsp;&nbsp;
-          <a href="#">
-              <th scope="col"><b>Homework</b></th>
-          </a>&nbsp;&nbsp;&nbsp;&nbsp;
-          
-      </tr>
-  </thead>
-  
+
+    <tr style="padding: 2px;">
+
+        &nbsp;&nbsp;<a href="{% url 'teachers:students'  %}">
+            <th scope="col"><b>Attendence</b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">
+            <th scope="col"><b>Videos</b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="#">
+            <th scope="col"><b>Assigments</b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </tr>
+
+</thead>
 </div>
+<table class="table">
+  <div class="container" ><a style="color: black;" href="#"></a></div>
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Date</th>
+      <th scope="col">Homework status</th>
+    </tr>
+  </thead>
+  <tbody >
+      {% for lesson in lessons %}
+    <tr class="table-warning">
+      <td>{{lesson.theme}}</td>
+      <td>{{lesson.date}}</td>
+      <td>Active</td>
+      
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

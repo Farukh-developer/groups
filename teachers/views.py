@@ -16,14 +16,18 @@ class TeacherTeamView(TeacherRequiredMixin, View):
         return render(request, 'teacher/groups.html', context={"teams":teams})
     
     
-# class LessonView(TeacherRequiredMixin, View):
-#     def get(self, request, group_id):
-#         team = get_object_or_404(Team, id=group_id)
-#         lessons = team.lessens.all()
-#         return render(request, 'teacher/lesson.html', {'lessons': lessons})
+
 
 class StudentByTeamView(TeacherRequiredMixin, View):
-    def get(self, request, group_id):
-        team = get_object_or_404(Team, id=group_id)
-        students=team.lessons.all()
-        return render(request, 'teacher/lessons.html', context={"students":students})   
+    def get(self, request, id):
+        team = get_object_or_404(Team, id=id)
+        lessons=team.lessons.all()
+        return render(request, 'teacher/lessons.html', context={"lessons":lessons})  
+    
+
+class Students(TeacherRequiredMixin, View):
+    def get(self, request):
+        team = get_object_or_404(Teacher, user=request.user)
+        students=team.students.all()
+        return render(request, 'teacher/students.html', context={"students":students})
+    
