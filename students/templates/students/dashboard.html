@@ -31,19 +31,35 @@
     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
       <div class="position-sticky">
         <div class="list-group list-group-flush mx-3 mt-4">
-          <a
-            href="{% url 'students:dashboard' %}"
-            class="list-group-item list-group-item-action py-2 ripple"
-            aria-current="true"
-          >
-            <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
-          </a>
+        {% if user.user_role == 'teacher' %}
+        <a
+        href="{% url 'teachers:dashboard' %}"
+        class="list-group-item list-group-item-action py-2 ripple"
+        aria-current="true"
+      >
+        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+      </a>
+        {% else %}
+        <a
+        href="{% url 'students:dashboard' %}"
+        class="list-group-item list-group-item-action py-2 ripple"
+        aria-current="true"
+      >
+        <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Main dashboard</span>
+      </a>
+        {% endif %}
           <a href="#" class="list-group-item list-group-item-action py-2 ripple ">
             <i class="far fa-money-bill-1 me-4"></i><span>Payment</span>
           </a>
-          <a href="{% url 'students:groups' %}" class="list-group-item list-group-item-action py-2 ripple"
-           >   <i class="fa-solid fa-people-group "></i>  <span>Group</span></a
-          >
+       {% if user.user_role == 'teacher' %}
+       <a href="{% url 'teachers:groups' %}" class="list-group-item list-group-item-action py-2 ripple"
+       >   <i class="fa-solid fa-people-group "></i>  <span>Group</span></a
+      >
+       {% else %}
+       <a href="{% url 'students:groups' %}" class="list-group-item list-group-item-action py-2 ripple"
+       >   <i class="fa-solid fa-people-group "></i>  <span>Group</span></a
+      >
+       {% endif %}
 
         </div>
       </div>

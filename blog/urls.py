@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import (LoginView, RegisterView, ProfileView, EditProfileView,  GroupsView, LogoutView, StudentsListView,
-                    EditStudentView, DeleteStudentView, StudentByTeamView , ResetPasswordView, delete, update, create, read)
+from .views import (LoginView, RegisterView, ProfileView,  GroupsView, LogoutView, StudentsListView,
+                    EditStudentView, DeleteStudentView, StudentByTeamView , ResetPasswordView, EditProfileView, delete, update, create, read)
 
 app_name = 'users'
 
@@ -12,7 +12,7 @@ urlpatterns = [
    
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('edit-profile/int:id/', EditProfileView.as_view(), name='edit_profile'),
+    path('edit-profile/<int:id>/', EditProfileView.as_view(), name='edit_profile'),
    
     
     path('group/', GroupsView.as_view(), name='group'),
@@ -21,7 +21,7 @@ urlpatterns = [
     path('delete-student/<int:id>/', DeleteStudentView.as_view(), name='delete_students'),
     path('register/', RegisterView.as_view(), name='register'),
     path('profile/', ProfileView.as_view(), name='profile'),
-    path('edit-profile/int:id/', EditProfileView.as_view(), name='edit_profile'),
+   
     
     path('get-team-by-students/<int:id>/', StudentByTeamView.as_view(), name='team-students'),
     

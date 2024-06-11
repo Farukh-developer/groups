@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import StudentDashboardView, StudentGroupView, StudentLessonsView, HomeworkView
+from .views import StudentDashboardView, StudentGroupView, StudentLessonsView, HomeworkView, HomeWorkDetail
 app_name = 'students'
 
 urlpatterns = [
@@ -10,6 +10,7 @@ urlpatterns = [
     path('groups/', StudentGroupView.as_view(), name='groups'),
     path('lessons/<int:group_id>/', StudentLessonsView.as_view(), name='lessons'),
     path('homework/<int:lesson_id>/', HomeworkView.as_view(), name='homework'),
+    path('homework-detail/<int:lesson_id>/', HomeWorkDetail.as_view(), name='homework_detail'),
     
     
     

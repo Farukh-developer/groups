@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect,get_object_or_404
 from django.views import View
 from .forms import LoginForm, RegisterForm, ProfileEditForm, StudentForm, TeamForm, StudentEditForm, ResetPasswordForm
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import User, Student, Team
-from .permission import AdminRequiredMixin
+from .models import User, Student, Team, Teacher
+from .permission import AdminRequiredMixin, TeacherRequiredMixin
 from django.db.models import Q
 
 class LoginView(View):
@@ -44,6 +44,11 @@ class RegisterView(AdminRequiredMixin,View):
                 new_student= Student()
                 new_student.user_id = user
                 new_student.save()
+            elif user.user_role == 'teacher':
+                new_teacher=Teacher()
+                new_teacher.user=user
+                new_teacher.save()
+                
 
             return redirect('/')
 
@@ -54,19 +59,22 @@ class ProfileView(LoginRequiredMixin,View):
     def get(self, request):
         return render(request, 'user/profile.html')
 
-class EditProfileView(LoginRequiredMixin,View):
+
+class EditProfileView(LoginRequiredMixin, View):
     def get(self, request, id):
-        profile=User.objects.get(id=id)
-        form=ProfileEditForm(instance=request.user)
-        return render(request, 'user/edit.html', context={"form":form})
+        profile = User.objects.get(id=id)
+        form = ProfileEditForm(instance=profile)
+        return render(request, 'user/edit.html', context={"form": form})
 
     def post(self, request, id):
         user = get_object_or_404(User, id=id)
         form = ProfileEditForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('/') 
+            return redirect('users:profile') 
         return render(request, 'user/edit.html', {'form': form})
+       
+       
         
 class GroupsView(View):
     def get(self, request):

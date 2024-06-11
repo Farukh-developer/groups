@@ -1,0 +1,27 @@
+{% extends 'students/dashboard.html' %}
+
+{% block content %}
+<table class="table table-warning">
+    <thead>
+      <tr>
+     
+        <th scope="col">Theme</th>
+        <th scope="col">Date</th>
+        <th scope="col">homework_Detail</th>
+       
+        
+       
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr class="table-warning">
+        <th scope="row">{{homework.lesson.theme}}</th>
+        <td>{{homework.description}}</td>
+        <td>{{homework.homework_file}}</td>
+        
+      </tr>
+
+    </tbody>
+  </table>
+{% endblock %}

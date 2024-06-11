@@ -16,12 +16,22 @@ class User(AbstractUser):
     address = models.CharField(max_length=100)
     user_role = models.CharField(max_length=10, choices=USER_ROLE_CHOICES, default="student")
     
+    
+    
+class Teacher(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    birth_date=models.DateField(null=True, blank=True)
+    def __str__(self):
+        return f"{self.user.username}"
+   
+    
 
 
 class Team(models.Model):
     name=models.CharField(max_length=70, unique=True)
     date_created=models.DateField(auto_now_add=True)
     end_date=models.DateField(blank=True, null=True)
+    teacher=models.ForeignKey(Teacher, on_delete=models.CASCADE, related_name='teams', null=True, blank=True)
     def __str__(self):
         return f"{self.name}"
 

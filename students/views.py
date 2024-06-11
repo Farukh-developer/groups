@@ -44,11 +44,21 @@ class HomeworkView(StudentRequiredMixin, View):
             homework.homework_file = form.cleaned_data['homework_file']
             homework.save()
             
-            lesson.assignments_status = True  
+            lesson.assigments_status = True  
             lesson.save()
             return redirect('students:dashboard')
 
        
         return render(request, 'students/homework.html', context={"form": form})
 
+
+class HomeWorkDetail(StudentRequiredMixin, View):
+    def get(self, request, lesson_id):
+        student=get_object_or_404(Student, user_id=request.user)
+        lesson=get_object_or_404(Lesson, id=lesson_id)
+        homework=Exercise.objects.filter(lesson=lesson, student=student).first()
+        return render(request, 'students/home_detail.html', context={"homework":homework})
+    
+
+        
 
