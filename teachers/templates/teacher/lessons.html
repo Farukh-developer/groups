@@ -4,25 +4,7 @@
 
 
 {% block content %}
-<div>
-  <thead>
 
-    <tr style="padding: 2px;">
-
-        &nbsp;&nbsp;<a href="{% url 'teachers:students'  %}">
-            <th scope="col"><b>Attendence</b></th>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">
-            <th scope="col"><b>Videos</b></th>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="#">
-            <th scope="col"><b>Assigments</b></th>
-        </a>&nbsp;&nbsp;&nbsp;&nbsp;
-
-    </tr>
-
-</thead>
-</div>
 <table class="table">
   <div class="container" ><a style="color: black;" href="#"></a></div>
   <thead>
@@ -35,7 +17,12 @@
   <tbody >
       {% for lesson in lessons %}
     <tr class="table-warning">
+      {% if lesson.theme %}
       <td>{{lesson.theme}}</td>
+
+      {% else %}
+      <td>{{lesson.theme}}</td>
+    {% endif %}
       <td>{{lesson.date}}</td>
       <td>Active</td>
       

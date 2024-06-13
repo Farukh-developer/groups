@@ -16,6 +16,7 @@ class Lesson(models.Model):
     
 class Exercise(models.Model):
     lesson=models.OneToOneField(Lesson, on_delete=models.CASCADE, related_name='homework')
+    team=models.ForeignKey(Team, on_delete=models.CASCADE, null=True, blank=True, related_name='homework')
     student=models.ForeignKey(Student, on_delete=models.CASCADE, related_name='students')
     description=models.TextField()
     homework_file=models.FileField(upload_to='homework/', blank=True, null=True)

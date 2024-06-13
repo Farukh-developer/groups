@@ -1,7 +1,27 @@
 {% extends 'students/dashboard.html' %}
 
 {% block content %}
+<div>
+  <thead>
+   
 
+    <tr style="padding: 2px;">
+    
+
+        &nbsp;&nbsp;<a href="#">
+            <th scope="col"><b>Students</b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">
+            <th scope="col"><b>Videos  </b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="">
+            <th scope="col"><b>Assigments</b></th>
+        </a>&nbsp;&nbsp;&nbsp;&nbsp;
+
+    </tr>
+
+</thead>
+</div>
 <div>
   <table class="table table-warning">
     <thead>
@@ -16,7 +36,7 @@
         {% for team in teams %}
       <tr class="table-warning">
         <th scope="row"><a href="{% url 'teachers:lessons' team.id %}">{{team.name}}</a></th>
-        <td><a href="#">{{team.date_created}}</a></td>
+        <td>{{team.date_created}}</td>
         <td>{{team.teacher}}</td>
  
       </tr>

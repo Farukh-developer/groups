@@ -22,12 +22,25 @@ class StudentByTeamView(TeacherRequiredMixin, View):
     def get(self, request, id):
         team = get_object_or_404(Team, id=id)
         lessons=team.lessons.all()
-        return render(request, 'teacher/lessons.html', context={"lessons":lessons})  
+        return render(request, 'teacher/lessons.html', context={"lessons":lessons, "team":team})  
     
 
-class Students(TeacherRequiredMixin, View):
-    def get(self, request):
-        team = get_object_or_404(Teacher, user=request.user)
+    
+class TeacherHomeworkView(TeacherRequiredMixin, View):
+    def get(self, request, id):
+        team = get_object_or_404(Team, id=id)
+        lessons=team.homework.all()
+        return render(request, 'teacher/lessons.html', context={"lessons":lessons, "team":team})  
+
+
+
+class StudentGroupView(TeacherRequiredMixin, View):
+    def get(self, request, id):
+        team = get_object_or_404(Team, id=id)
         students=team.students.all()
-        return render(request, 'teacher/students.html', context={"students":students})
+        return render(request, 'teachers/students.html', context={"students":students})
+    
+
+    
+
     
